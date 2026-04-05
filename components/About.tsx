@@ -24,7 +24,7 @@ const credentials = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+    <section id="about" className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-navy/40">
       {/* Subtle blue glow line at top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 

@@ -53,7 +53,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-16 sm:py-24 lg:py-32 bg-navy">
+    <section id="services" className="relative py-16 sm:py-24 lg:py-32">
       {/* Top glow line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 

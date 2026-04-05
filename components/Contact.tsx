@@ -40,7 +40,7 @@ export default function Contact() {
     'w-full bg-navy-light/60 border border-accent/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all duration-300'
 
   return (
-    <section id="contact" className="relative py-16 sm:py-24 lg:py-32 bg-navy">
+    <section id="contact" className="relative py-16 sm:py-24 lg:py-32">
       {/* Top glow line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 

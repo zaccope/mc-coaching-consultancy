@@ -9,18 +9,18 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#0E1A48',
-          light: '#132461',
-          mid: '#0F2058',
-          dark: '#0B1538',
-          card: '#112058',
+          DEFAULT: '#0F1E52',
+          light: '#152A6E',
+          mid: '#122460',
+          dark: '#0C1844',
+          card: '#142668',
         },
         accent: {
-          DEFAULT: '#00C8F0',
-          light: '#4DD8F5',
-          dark: '#00A0C8',
-          glow: 'rgba(0, 200, 240, 0.25)',
-          'glow-strong': 'rgba(0, 200, 240, 0.4)',
+          DEFAULT: '#00D4FF',
+          light: '#55E2FF',
+          dark: '#00A8D4',
+          glow: 'rgba(0, 212, 255, 0.25)',
+          'glow-strong': 'rgba(0, 212, 255, 0.4)',
         },
       },
       fontFamily: {
