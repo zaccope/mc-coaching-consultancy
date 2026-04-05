@@ -1,28 +1,21 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif, Outfit } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
 import Analytics from '@/components/Analytics'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-const instrumentSerif = Instrument_Serif({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-instrument',
-  display: 'swap',
-})
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-outfit',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'M.C. Coaching Consultancy | Elite Football Coaching',
+  title: 'Elite Football Coaching Consultancy | M.C. Coaching Consultancy',
   description:
-    'Decades of international football coaching expertise. Bespoke playing methodologies, coaching frameworks, and development programs for clubs and academies worldwide.',
+    'Discover customised coaching solutions and proven tactics to elevate the performance of your football club. 20+ years of international football coaching expertise.',
   keywords: [
     'football coaching consultancy',
     'coaching methodology',
@@ -33,9 +26,9 @@ export const metadata: Metadata = {
     'football program design',
   ],
   openGraph: {
-    title: 'M.C. Coaching Consultancy | Elite Football Coaching',
+    title: 'Elite Football Coaching Consultancy | M.C. Coaching Consultancy',
     description:
-      'Decades of international football coaching expertise. Bespoke playing methodologies, coaching frameworks, and development programs.',
+      'Discover customised coaching solutions and proven tactics to elevate the performance of your football club.',
     url: 'https://www.mccoachingconsultancy.com',
     siteName: 'M.C. Coaching Consultancy',
     locale: 'en_GB',
@@ -45,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'M.C. Coaching Consultancy',
     description:
-      'Decades of international football coaching expertise. Bespoke methodologies and development programs.',
+      'Discover customised coaching solutions and proven tactics to elevate the performance of your football club.',
   },
   robots: {
     index: true,
@@ -61,7 +54,6 @@ const schemaData = {
   description:
     'International football coaching consultancy specialising in playing methodology design, coaching frameworks, syllabus development, and coach development programs.',
   email: 'MarcCampbell@mccoachingconsultancyltd.onmicrosoft.com',
-  sameAs: [],
   serviceType: [
     'Playing Methodology Design',
     'Coaching Methodology Design',
@@ -76,17 +68,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${instrumentSerif.variable} ${outfit.variable}`}
-    >
+    <html lang="en" className={poppins.variable}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
       </head>
-      <body className="bg-zinc-950 text-stone-50 font-sans antialiased">
+      <body className="bg-navy text-white font-body antialiased">
         <Analytics />
         <Navbar />
         {children}

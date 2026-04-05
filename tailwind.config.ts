@@ -8,28 +8,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#ecfdf5',
-          100: '#d1fae5',
-          200: '#a7f3d0',
-          300: '#6ee7b7',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
-          950: '#022c22',
+        navy: {
+          DEFAULT: '#0B1437',
+          light: '#112050',
+          mid: '#0E1A3D',
+          dark: '#070E24',
+          card: '#0D1840',
         },
-        surface: {
-          DEFAULT: '#141416',
-          light: '#1c1c1f',
-          border: 'rgba(255, 255, 255, 0.06)',
+        accent: {
+          DEFAULT: '#00B4D8',
+          light: '#48CAE4',
+          dark: '#0096C7',
+          glow: 'rgba(0, 180, 216, 0.25)',
+          'glow-strong': 'rgba(0, 180, 216, 0.4)',
         },
       },
       fontFamily: {
-        serif: ['var(--font-instrument)', 'Georgia', 'serif'],
-        sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'fade-up': {

@@ -1,72 +1,81 @@
-import { Trophy, Globe, Target } from '@phosphor-icons/react/dist/ssr'
+import Image from 'next/image'
 import ScrollReveal from './ScrollReveal'
 
 const credentials = [
   {
-    icon: Globe,
-    stat: '20+',
-    label: 'Years of international coaching',
+    icon: '/images/icon-expertise.png',
+    title: '20+ years of international football coaching expertise',
     description:
-      'Decades of hands-on experience across diverse settings worldwide, from grassroots academies to professional clubs. Unparalleled insights and strategies for success.',
+      'Benefit from decades of hands-on experience across diverse settings, ensuring unparalleled insights and strategies for success.',
   },
   {
-    icon: Target,
-    stat: 'Bespoke',
-    label: 'Tailored football programs',
+    icon: '/images/icon-tailored.png',
+    title: 'Tailored football programs',
     description:
-      'Programs meticulously crafted for your team\'s unique strengths, weaknesses, and aspirations. Every methodology is built around your specific context and goals.',
+      'Bespoke football programs meticulously tailored to your team\'s unique strengths, weaknesses, and aspirations, achieving sustainable growth.',
   },
   {
-    icon: Trophy,
-    stat: 'Proven',
-    label: 'Track record of results',
+    icon: '/images/icon-proven.png',
+    title: 'Proven track record of success',
     description:
-      'A history of transforming teams into champions, delivering tangible results through effective coaching and strategic program development at every level.',
+      'Trust in our history of transforming teams into champions, delivering tangible results through effective coaching and strategic program development.',
   },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 sm:py-36">
+    <section id="about" className="relative py-24 sm:py-32 bg-navy">
+      {/* Subtle blue glow line at top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <ScrollReveal>
-          <span className="inline-block px-4 py-1.5 rounded-full text-[11px] uppercase tracking-[0.2em] font-medium text-brand-400 border border-brand-500/20 bg-brand-500/[0.06] mb-6">
-            Why M.C. Coaching
-          </span>
-        </ScrollReveal>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left — Image */}
+          <ScrollReveal direction="left">
+            <div className="relative aspect-square max-w-md mx-auto lg:mx-0 rounded-full overflow-hidden border-2 border-accent/20 shadow-[0_0_40px_rgba(0,180,216,0.1)]">
+              <Image
+                src="/images/about-pitch.jpeg"
+                alt="Digital football pitch visualisation"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </ScrollReveal>
 
-        <ScrollReveal delay={0.1}>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.1] max-w-2xl mb-6">
-            Decades of international experience building winning programs
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.15}>
-          <p className="text-stone-400 text-lg leading-relaxed max-w-2xl mb-16">
-            M.C. Coaching Consultancy partners with clubs and academies worldwide to design and implement world-class coaching frameworks that deliver sustainable performance improvement.
-          </p>
-        </ScrollReveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {credentials.map((item, i) => (
-            <ScrollReveal key={item.label} delay={0.1 + i * 0.1}>
-              {/* Double-bezel card */}
-              <div className="rounded-[1.5rem] bg-white/[0.03] ring-1 ring-white/[0.06] p-1.5 h-full">
-                <div className="rounded-[calc(1.5rem-6px)] bg-surface p-8 h-full">
-                  <div className="w-11 h-11 rounded-xl bg-brand-500/10 flex items-center justify-center mb-6">
-                    <item.icon size={22} weight="duotone" className="text-brand-400" />
-                  </div>
-                  <p className="font-serif text-3xl text-brand-400 mb-1">{item.stat}</p>
-                  <p className="text-sm font-semibold text-stone-200 uppercase tracking-wider mb-4">
-                    {item.label}
-                  </p>
-                  <p className="text-stone-400 leading-relaxed text-sm">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+          {/* Right — Content */}
+          <div>
+            <ScrollReveal>
+              <h2 className="text-3xl sm:text-4xl font-bold leading-[1.15] mb-10">
+                Decades of international experience building winning football programs
+              </h2>
             </ScrollReveal>
-          ))}
+
+            <div className="space-y-8">
+              {credentials.map((item, i) => (
+                <ScrollReveal key={item.title} delay={0.1 + i * 0.1}>
+                  <div className="flex gap-4">
+                    <div className="w-12 h-12 rounded-full bg-navy-light flex items-center justify-center shrink-0 border border-accent/20">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={28}
+                        height={28}
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-white mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-white/60 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

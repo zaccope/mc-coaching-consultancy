@@ -1,4 +1,8 @@
-import ScrollReveal from './ScrollReveal'
+'use client'
+
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowLeft, ArrowRight } from '@phosphor-icons/react'
 
 const testimonials = [
   {
@@ -6,14 +10,14 @@ const testimonials = [
       'M.C Coaching Consultancy transformed the way in which our coaches work at our Club. The Coach Development program they offered really took our on and off-field coach development to another level.',
     name: 'Neil Clinton',
     role: 'Director of Coaching',
-    org: 'The Football Academy New Jersey, USA',
+    org: 'The Football Academy New Jersey (USA)',
   },
   {
     quote:
       'Having the support from M.C Coaching Consultancy to help develop our Academy coaching syllabus has been invaluable. Their knowledge and professionalism has helped us create a programme that is age-appropriate, challenging and fun for our players as well as user-friendly for our team of coaches.',
     name: 'J. Bailey',
     role: '',
-    org: 'The Football Development Centre, UK',
+    org: 'The Football Development Centre (U.K)',
   },
   {
     quote:
@@ -32,81 +36,85 @@ const testimonials = [
 ]
 
 export default function Testimonials() {
+  const [current, setCurrent] = useState(0)
+
+  const prev = () =>
+    setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1))
+  const next = () =>
+    setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1))
+
+  const t = testimonials[current]
+
   return (
-    <section id="testimonials" className="relative py-28 sm:py-36">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <ScrollReveal>
-          <span className="inline-block px-4 py-1.5 rounded-full text-[11px] uppercase tracking-[0.2em] font-medium text-brand-400 border border-brand-500/20 bg-brand-500/[0.06] mb-6">
-            Client testimonials
-          </span>
-        </ScrollReveal>
+    <section id="testimonials" className="relative py-24 sm:py-32 bg-navy">
+      {/* Top glow line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-        <ScrollReveal delay={0.1}>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.1] max-w-xl mb-16">
-            Trusted worldwide
-          </h2>
-        </ScrollReveal>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
+          Client Testimonials
+        </h2>
 
-        {/* 2-column offset grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left column — slight top offset */}
-          <div className="space-y-6">
-            {testimonials.filter((_, i) => i % 2 === 0).map((t, i) => (
-              <ScrollReveal key={t.name} delay={0.1 + i * 0.1}>
-                <TestimonialCard testimonial={t} />
-              </ScrollReveal>
-            ))}
+        <div className="relative">
+          {/* Arrows */}
+          <button
+            onClick={prev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-12 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all z-10"
+            aria-label="Previous testimonial"
+          >
+            <ArrowLeft size={18} />
+          </button>
+
+          <button
+            onClick={next}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-12 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all z-10"
+            aria-label="Next testimonial"
+          >
+            <ArrowRight size={18} />
+          </button>
+
+          {/* Quote */}
+          <div className="card-glow rounded-[2rem] px-8 sm:px-14 py-12 sm:py-16 text-center min-h-[280px] flex flex-col items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+              >
+                <blockquote className="text-lg sm:text-xl font-medium leading-relaxed text-white/90 mb-8">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+
+                <p className="text-sm font-semibold text-white">
+                  {t.name}
+                  {t.role ? ` (${t.role})` : ''}
+                </p>
+                <p className="text-xs text-white/50 mt-1">
+                  {t.org}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Right column — pushed down for offset */}
-          <div className="space-y-6 md:mt-12">
-            {testimonials.filter((_, i) => i % 2 !== 0).map((t, i) => (
-              <ScrollReveal key={t.name} delay={0.15 + i * 0.1}>
-                <TestimonialCard testimonial={t} />
-              </ScrollReveal>
+          {/* Dots */}
+          <div className="flex items-center justify-center gap-2 mt-6">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  i === current
+                    ? 'bg-accent w-6'
+                    : 'bg-white/20 hover:bg-white/40'
+                }`}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
-}
-
-function TestimonialCard({
-  testimonial,
-}: {
-  testimonial: (typeof testimonials)[number]
-}) {
-  return (
-    <div className="rounded-[1.5rem] bg-white/[0.03] ring-1 ring-white/[0.06] p-1.5">
-      <div className="rounded-[calc(1.5rem-6px)] bg-surface p-7 sm:p-8">
-        {/* Quote mark */}
-        <svg
-          width="32"
-          height="24"
-          viewBox="0 0 32 24"
-          fill="none"
-          className="text-brand-500/30 mb-5"
-          aria-hidden="true"
-        >
-          <path
-            d="M0 14.4C0 6.4 4.8 1.6 14.4 0l1.2 3.2C9.2 4.8 7.2 8 7.2 11.2h4.8v12.8H0V14.4Zm18 0C18 6.4 22.8 1.6 32 0l1.2 3.2c-6.4 1.6-8.4 4.8-8.4 8h4.8v12.8H18V14.4Z"
-            fill="currentColor"
-          />
-        </svg>
-
-        <blockquote className="text-stone-200 leading-relaxed mb-6">
-          {testimonial.quote}
-        </blockquote>
-
-        <div className="border-t border-white/[0.06] pt-5">
-          <p className="text-sm font-semibold text-stone-100">{testimonial.name}</p>
-          <p className="text-xs text-stone-500 mt-0.5">
-            {testimonial.role ? `${testimonial.role} — ` : ''}
-            {testimonial.org}
-          </p>
-        </div>
-      </div>
-    </div>
   )
 }

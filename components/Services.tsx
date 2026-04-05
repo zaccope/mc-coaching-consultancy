@@ -1,127 +1,112 @@
-import { Crosshair, ChalkboardSimple, BookOpen, TrendUp } from '@phosphor-icons/react/dist/ssr'
+import Image from 'next/image'
 import ScrollReveal from './ScrollReveal'
 
 const services = [
   {
-    icon: Crosshair,
+    image: '/images/service-playing.jpeg',
     title: 'Playing Methodology Design',
-    subtitle: 'Innovative strategies for individual and team performance enhancement',
+    subtitle: 'Crafting innovative strategies for individual and team performance enhancement.',
     points: [
       'Age-appropriate game model',
-      'Clearly defined principles in and out of possession and transition',
-      'Consistent terminology across all age groups',
-      'Individual Development Plans for players',
-      'Video analysis integration for performance assessment',
+      'Clearly defined principles in/out of possession & transition',
+      'Consistent terminology',
+      'Individual Development Plans (IDPs) for players',
+      'Use of video analysis for performance assessment',
     ],
   },
   {
-    icon: ChalkboardSimple,
+    image: '/images/service-coaching.jpeg',
     title: 'Coaching Methodology Design',
-    subtitle: 'Empowering coaches with effective, structured teaching methodologies',
+    subtitle: 'Empowering coaches with effective teaching methodologies.',
     points: [
       'Coaching methodology outlining key principles',
-      'Plan-Do-Review process implementation',
+      'Plan-Do-Review process',
       'Guidance for setting key objectives in training and matches',
       'Development of a session plan library',
-      'Effective team talks and delivery standards',
+      'Effective team talks',
+      'Establishment of delivery standards',
     ],
   },
   {
-    icon: BookOpen,
+    image: '/images/service-syllabus.jpeg',
     title: 'Coaching Syllabus Design',
-    subtitle: 'Structured teaching programs for coaches and teams at every level',
+    subtitle: 'Creating structured teaching programs for coaches and teams.',
     points: [
-      'Annual syllabus linked to the Playing Methodology',
+      'Development of an annual syllabus linked to the Playing Methodology',
       'Creation of 6-8 week cycles of work',
       'Weekly cycles of work development',
-      'Physical, psychological, and social characteristics integration',
+      'Incorporation of physical, psychological, and social characteristics into the program',
     ],
   },
   {
-    icon: TrendUp,
+    image: '/images/service-development.jpeg',
     title: 'Coach Development Program',
-    subtitle: 'Fostering continuous growth and improvement for coaching staff',
+    subtitle: 'Fostering continuous growth and improvement for coaches.',
     points: [
-      'Coaching CPD with a seasonal calendar',
+      'Coaching CPD (Continuous Professional Development) with a seasonal calendar',
       'Guidance for session planning',
-      'Subjective and objective feedback for sessions',
-      'Coach Individual Development Plan',
+      'Subjective and objective feedback for sessions (remote and in-situ)',
+      'Coach Individual Development Plan (IDP)',
     ],
   },
 ]
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-28 sm:py-36">
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-brand-500/[0.02] blur-[120px] pointer-events-none" />
+    <section id="services" className="relative py-24 sm:py-32 bg-navy">
+      {/* Top glow line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <ScrollReveal>
-          <span className="inline-block px-4 py-1.5 rounded-full text-[11px] uppercase tracking-[0.2em] font-medium text-brand-400 border border-brand-500/20 bg-brand-500/[0.06] mb-6">
-            What we do
-          </span>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.1}>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.1] max-w-xl mb-16">
-            Our services
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
+            Our Services
           </h2>
         </ScrollReveal>
 
-        {/* Asymmetric bento grid: 7fr 5fr alternating */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Row 1 */}
-          <ScrollReveal delay={0.1} className="lg:col-span-7">
-            <ServiceCard service={services[0]} />
-          </ScrollReveal>
-          <ScrollReveal delay={0.2} className="lg:col-span-5">
-            <ServiceCard service={services[1]} />
-          </ScrollReveal>
+        {/* 2x2 grid matching original */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {services.map((service, i) => (
+            <ScrollReveal key={service.title} delay={0.1 + i * 0.08}>
+              <div className="card-glow rounded-[2rem] overflow-hidden h-full transition-all duration-500">
+                <div className="p-6 sm:p-8">
+                  {/* Service image */}
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="w-14 h-14 rounded-full overflow-hidden border border-accent/20 shrink-0 shadow-[0_0_12px_rgba(0,180,216,0.15)]">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        width={56}
+                        height={56}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-accent-light">
+                      {service.title}
+                    </h3>
+                  </div>
 
-          {/* Row 2 — flipped */}
-          <ScrollReveal delay={0.15} className="lg:col-span-5">
-            <ServiceCard service={services[2]} />
-          </ScrollReveal>
-          <ScrollReveal delay={0.25} className="lg:col-span-7">
-            <ServiceCard service={services[3]} />
-          </ScrollReveal>
+                  <p className="text-sm text-white/60 italic mb-5">
+                    {service.subtitle}
+                  </p>
+
+                  <ul className="space-y-2.5">
+                    {service.points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-start gap-2.5 text-sm text-white/75"
+                      >
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
-  )
-}
-
-function ServiceCard({
-  service,
-}: {
-  service: (typeof services)[number]
-}) {
-  const Icon = service.icon
-
-  return (
-    <div className="group rounded-[1.5rem] bg-white/[0.03] ring-1 ring-white/[0.06] p-1.5 h-full hover:ring-brand-500/20 transition-all duration-500">
-      <div className="rounded-[calc(1.5rem-6px)] bg-surface p-7 sm:p-8 h-full">
-        <div className="w-11 h-11 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5 group-hover:bg-brand-500/15 transition-colors duration-500">
-          <Icon size={22} weight="duotone" className="text-brand-400" />
-        </div>
-
-        <h3 className="font-serif text-xl sm:text-2xl text-stone-50 mb-2">
-          {service.title}
-        </h3>
-        <p className="text-stone-400 text-sm leading-relaxed mb-6">
-          {service.subtitle}
-        </p>
-
-        <ul className="space-y-3">
-          {service.points.map((point) => (
-            <li key={point} className="flex items-start gap-3 text-sm text-stone-300">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500/60 shrink-0" />
-              {point}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
   )
 }

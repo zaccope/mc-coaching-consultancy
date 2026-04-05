@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 const links = [
+  { label: 'Home', href: '#' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Testimonials', href: '#testimonials' },
 ]
 
 export default function Navbar() {
@@ -21,61 +22,77 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [isOpen])
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 flex justify-center pt-5 px-4">
-        <div
-          className={`flex items-center gap-2 sm:gap-6 px-4 sm:px-6 py-3 rounded-full transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-            scrolled
-              ? 'bg-zinc-950/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/[0.08]'
-              : 'bg-white/[0.03] backdrop-blur-xl border border-white/[0.05]'
-          }`}
-        >
-          <a href="#" className="font-serif text-xl text-stone-50 tracking-tight pr-2 sm:pr-4">
-            M.C.
+      <nav
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+          scrolled
+            ? 'bg-navy-dark/90 backdrop-blur-xl shadow-lg shadow-black/20'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
+          {/* Logo */}
+          <a href="#" className="relative h-10 w-48 shrink-0">
+            <Image
+              src="/images/logo.png"
+              alt="M.C. Coaching Consultancy"
+              fill
+              className="object-contain object-left"
+              priority
+            />
           </a>
 
-          <div className="hidden md:flex items-center gap-6">
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-stone-400 hover:text-stone-50 transition-colors duration-300"
+                className="text-sm font-medium text-white/80 hover:text-white transition-colors duration-300"
               >
                 {link.label}
               </a>
             ))}
+            <a
+              href="#contact"
+              className="px-6 py-2.5 rounded-full bg-accent text-sm font-semibold text-white hover:bg-accent-light active:scale-[0.97] transition-all duration-300"
+            >
+              Get in Touch
+            </a>
           </div>
 
-          <a
-            href="#contact"
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-brand-500 text-sm font-medium text-zinc-950 hover:bg-brand-400 active:scale-[0.97] transition-all duration-300 ml-2"
-          >
-            Get in touch
-          </a>
-
+          {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative w-8 h-8 flex items-center justify-center ml-2"
+            className="md:hidden relative w-8 h-8 flex items-center justify-center"
             aria-label="Toggle menu"
           >
             <span
-              className={`absolute h-[1.5px] w-5 bg-stone-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-                isOpen ? 'rotate-45 translate-y-0' : '-translate-y-[5px]'
+              className={`absolute h-[2px] w-6 bg-white transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                isOpen ? 'rotate-45 translate-y-0' : '-translate-y-[6px]'
               }`}
             />
             <span
-              className={`absolute h-[1.5px] w-5 bg-stone-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-                isOpen ? '-rotate-45 translate-y-0' : 'translate-y-[5px]'
+              className={`absolute h-[2px] w-6 bg-white transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                isOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            <span
+              className={`absolute h-[2px] w-6 bg-white transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                isOpen ? '-rotate-45 translate-y-0' : 'translate-y-[6px]'
               }`}
             />
           </button>
         </div>
       </nav>
 
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -83,7 +100,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-0 z-30 bg-zinc-950/95 backdrop-blur-3xl flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-30 bg-navy-dark/95 backdrop-blur-3xl flex flex-col items-center justify-center gap-8"
           >
             {links.map((link, i) => (
               <motion.a
@@ -98,7 +115,7 @@ export default function Navbar() {
                   delay: 0.1 + i * 0.07,
                   ease: [0.32, 0.72, 0, 1],
                 }}
-                className="text-3xl font-serif text-stone-50 hover:text-brand-400 transition-colors"
+                className="text-3xl font-semibold text-white hover:text-accent transition-colors"
               >
                 {link.label}
               </motion.a>
@@ -114,9 +131,9 @@ export default function Navbar() {
                 delay: 0.1 + links.length * 0.07,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              className="mt-4 px-8 py-3 rounded-full bg-brand-500 text-lg font-medium text-zinc-950"
+              className="mt-4 px-8 py-3 rounded-full bg-accent text-lg font-semibold text-white"
             >
-              Get in touch
+              Get in Touch
             </motion.a>
           </motion.div>
         )}
