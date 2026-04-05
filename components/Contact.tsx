@@ -40,21 +40,21 @@ export default function Contact() {
     'w-full bg-navy-light/60 border border-accent/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all duration-300'
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 bg-navy">
+    <section id="contact" className="relative py-16 sm:py-24 lg:py-32 bg-navy">
       {/* Top glow line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-3">
+      <div className="max-w-3xl mx-auto px-5 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-2 sm:mb-3">
           Get in touch!
         </h2>
-        <p className="text-center text-white/50 mb-12">
+        <p className="text-center text-white/50 text-sm sm:text-base mb-8 sm:mb-12">
           We&apos;d love to help you out!
         </p>
 
-        <div className="card-glow rounded-[2rem] p-6 sm:p-10">
+        <div className="card-glow rounded-2xl sm:rounded-[2rem] p-5 sm:p-8 lg:p-10">
           {status === 'sent' ? (
-            <div className="flex flex-col items-center justify-center py-16 text-center">
+            <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-center">
               <div className="w-14 h-14 rounded-full bg-accent/15 flex items-center justify-center mb-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-accent">
                   <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -64,10 +64,10 @@ export default function Contact() {
               <p className="text-sm text-white/50">We will be in touch shortly.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
-                <p className="text-sm font-semibold text-white/80 mb-4">Name</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <p className="text-sm font-semibold text-white/80 mb-3 sm:mb-4">Name</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className="block text-xs text-white/40 mb-1.5">
                       First Name <span className="text-accent">*</span>
@@ -140,7 +140,7 @@ export default function Contact() {
                 </p>
               )}
 
-              <div className="flex justify-center pt-2">
+              <div className="flex justify-center pt-1 sm:pt-2">
                 <button
                   type="submit"
                   disabled={status === 'sending'}

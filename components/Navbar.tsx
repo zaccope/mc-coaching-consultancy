@@ -36,11 +36,11 @@ export default function Navbar() {
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <a href="#" className="relative h-10 w-48 shrink-0">
+          <a href="#" className="relative h-8 sm:h-10 w-40 sm:w-48 shrink-0">
             <Image
-              src="/images/logo.png"
+              src="/images/Horizontal Logo.png"
               alt="M.C. Coaching Consultancy"
               fill
               className="object-contain object-left"
@@ -115,7 +115,7 @@ export default function Navbar() {
                   delay: 0.1 + i * 0.07,
                   ease: [0.32, 0.72, 0, 1],
                 }}
-                className="text-3xl font-semibold text-white hover:text-accent transition-colors"
+                className="text-2xl font-semibold text-white hover:text-accent transition-colors"
               >
                 {link.label}
               </motion.a>
