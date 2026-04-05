@@ -17,7 +17,9 @@ export default function Hero() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent lg:hidden" />
+        {/* Extra fade on mobile so text reads clearly */}
+        <div className="absolute inset-0 bg-navy/50 lg:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent lg:hidden" />
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-5 sm:px-6 w-full pt-28 pb-16 sm:pt-32 sm:pb-20">

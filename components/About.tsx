@@ -41,7 +41,9 @@ export default function About() {
           <div className="absolute inset-0 bg-gradient-to-r from-navy/40 via-transparent to-navy" />
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-navy" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy via-transparent to-navy" />
-          <div className="absolute inset-0 bg-navy/30" />
+          <div className="absolute inset-0 bg-navy/30 lg:bg-navy/30" />
+          {/* Extra fade on mobile for text legibility */}
+          <div className="absolute inset-0 bg-navy/40 lg:hidden" />
         </div>
       </div>
 

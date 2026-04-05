@@ -1,6 +1,6 @@
 export default function BackgroundEffect() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-50 lg:opacity-100" aria-hidden="true">
       {/* Large floating orbs — holographic glow */}
       <div className="absolute top-[5%] left-[10%] w-[600px] h-[600px] rounded-full bg-accent/[0.07] blur-[120px] animate-float-slow" />
       <div className="absolute top-[45%] right-[5%] w-[500px] h-[500px] rounded-full bg-blue-400/[0.08] blur-[140px] animate-float-slower" />
