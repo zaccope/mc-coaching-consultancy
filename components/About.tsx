@@ -24,11 +24,28 @@ const credentials = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-16 sm:py-24 lg:py-32 bg-navy">
+    <section id="about" className="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
       {/* Subtle blue glow line at top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6">
+      {/* Background image — blended like hero */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute left-0 top-0 bottom-0 w-full lg:w-[55%]">
+          <Image
+            src="/images/AI Digital football pitch graphic jpg.jpeg"
+            alt=""
+            fill
+            className="object-cover object-center"
+          />
+          {/* Gradient fades on all sides to blend into background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/40 via-transparent to-navy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-navy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy via-transparent to-navy" />
+          <div className="absolute inset-0 bg-navy/30" />
+        </div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Text content — first on mobile, right on desktop */}
           <div className="order-1 lg:order-2">
@@ -42,7 +59,7 @@ export default function About() {
               {credentials.map((item, i) => (
                 <ScrollReveal key={item.title} delay={0.1 + i * 0.1}>
                   <div className="flex gap-4">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-navy-light flex items-center justify-center shrink-0 border border-accent/20">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-navy-light/80 flex items-center justify-center shrink-0 border border-accent/20 backdrop-blur-sm">
                       <Image
                         src={item.icon}
                         alt=""
@@ -65,17 +82,8 @@ export default function About() {
             </div>
           </div>
 
-          {/* Image — second on mobile, left on desktop */}
-          <ScrollReveal direction="left" className="order-2 lg:order-1">
-            <div className="relative aspect-square max-w-sm mx-auto lg:mx-0 rounded-full overflow-hidden border-2 border-accent/20 shadow-[0_0_40px_rgba(0,180,216,0.1)]">
-              <Image
-                src="/images/AI Digital football pitch graphic jpg.jpeg"
-                alt="Digital football pitch visualisation"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </ScrollReveal>
+          {/* Spacer for the background image on desktop */}
+          <div className="order-2 lg:order-1 hidden lg:block" />
         </div>
       </div>
     </section>

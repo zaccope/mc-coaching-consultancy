@@ -4,6 +4,7 @@ import './globals.css'
 import Analytics from '@/components/Analytics'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import BackgroundEffect from '@/components/BackgroundEffect'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -76,10 +77,13 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-navy text-white font-body antialiased">
+        <BackgroundEffect />
         <Analytics />
         <Navbar />
-        {children}
-        <Footer />
+        <div className="relative z-10">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   )

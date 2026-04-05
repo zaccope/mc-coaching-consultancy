@@ -10,7 +10,7 @@
   }
 
   ::selection {
-    background-color: rgba(0, 180, 216, 0.3);
+    background-color: rgba(0, 200, 240, 0.3);
     color: #ffffff;
   }
 }
@@ -19,14 +19,14 @@
   text-wrap: balance;
 }
 
-/* Card glow effect matching original */
+/* Card glow effect */
 .card-glow {
-  background: linear-gradient(135deg, #0D1840 0%, #112050 100%);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  box-shadow: 0 0 20px rgba(0, 180, 216, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  background: linear-gradient(135deg, #112058 0%, #132461 100%);
+  border: 1px solid rgba(0, 200, 240, 0.2);
+  box-shadow: 0 0 20px rgba(0, 200, 240, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .card-glow:hover {
-  border-color: rgba(0, 180, 216, 0.35);
-  box-shadow: 0 0 30px rgba(0, 180, 216, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 200, 240, 0.35);
+  box-shadow: 0 0 30px rgba(0, 200, 240, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
